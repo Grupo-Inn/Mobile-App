@@ -21,6 +21,15 @@ class User extends Modelo
         
         return $users;
     }
+
+    public function get_user($a_username, $a_password)
+    {
+        $result = $this->_db->query("SELECT * FROM grupo_inn_db.Usuario WHERE grupo_inn_db.Usuario.nombre = LOWER('" . $a_username . "') AND grupo_inn_db.Usuario.clave = '" . $a_password . "'");
+
+        $user = $result->fetch_all(MYSQLI_ASSOC);
+        
+        return $user;
+    }
 } 
 
 class Event extends modelo
@@ -46,7 +55,7 @@ class Event extends modelo
 
     public function get_event($a_id)
     {
-        $result = $this->_db->query('SELECT * FROM grupo_inn_db.Evento WHERE grupo_inn_db.Evento.idEvento == '.$a_id);
+        $result = $this->_db->query('SELECT * FROM grupo_inn_db.Evento WHERE grupo_inn_db.Evento.idEvento = '.$a_id);
 
         $event = $result->fetch_all(MYSQLI_ASSOC);
         

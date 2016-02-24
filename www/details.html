@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="js/jquery.js"></script>
     <script src="js/jquery.mobile-1.4.0-rc.1.js"></script>
+    
 </head>
 
 <body>
-    <div data-role="page" id="inicio">
+    <div data-role="page" id="home">
 
         <div data-role="header" data-theme="d" style="overflow:hidden;">
             <h1>Grupo inn</h1>
@@ -21,10 +22,10 @@
 
                 <ul>
                     <li>
-                        <a href="home.html" data-ajax="false" data-transition="pop" ><i class="fa fa-home fa-2x"></i><br>Home</a>
+                        <a href="home.html" data-ajax="false" data-transition="pop"  class="ui-btn-active"><i class="fa fa-home fa-2x"></i><br>Home</a>
                     </li>
                     <li>
-                        <a href="notificaciones.html" data-ajax="false" data-transition="pop"  class="ui-btn-active"><i class="fa fa-bell fa-2x"></i><br>Notificaciones</a>
+                        <a href="notificaciones.html" data-ajax="false" data-transition="pop" ><i class="fa fa-bell fa-2x"></i><br>Notificaciones</a>
                     </li>
                     <li>
                         <a href="profile.html" data-ajax="false" data-transition="pop" ><i class="fa fa-user fa-2x"></i><br>Perfil</a>
@@ -35,27 +36,14 @@
             <!-- /navbar -->
        
         </div>
-        <div id="notifications" data-role="content" class="ui-content"><!--Contenido de notificaciones-->
-            <!--<ul data-role="listview">
-                <li>
-                    <a href="#">
-                        <img src="http://placehold.it/500x500">
-                        <h2>Bourbon ST.</h2>
-                        <p>Happy hour - 2x1 en todo el menú hasta las 7:00PM</p>
-                    </a>
-                </li>
-                ...
-            </ul>-->
+        <div id="detail" data-role="content" class="ui-content">
+
         </div>
         
     </div>
 
-<script src="js/app.js"></script>
-<script>
-    $(document).ready(notificationLoad());
-</script>
+    <script src="js/app.js"></script>
+
 
 </body>
-
-
 </html>

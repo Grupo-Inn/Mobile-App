@@ -1,4 +1,4 @@
-localStorage["host"] = "http://127.0.0.1/mobile/";
+localStorage["host"] = "http://127.0.0.1/GrupoInn/mobile/";
 
 $('#login').submit(function () {
 
@@ -6,14 +6,13 @@ $('#login').submit(function () {
     var datosUsuario = $("#username").val();
     var datosPassword = $("#password").val();
 
-    $.getJSON(localStorage["host"] + "php/login.php", {usuario: datosUsuario, password: datosPassword})
-            .done(function (respuestaServer) {
-
-                if (respuestaServer.validacion == "ok") {
+    $.getJSON(localStorage["host"] + "php/manage.php", {option: 'login', username: datosUsuario, password: datosPassword}, function (data)
+        {
+            if (data.status == "OK") {
 
                     /// si la validacion es correcta, muestra la pantalla "home"
-                    //localStorage["usuario"] = respuestaServer.usuario;
-                    localStorage["idUsuario"] = respuestaServer.idUsuario;
+                    //localStorage["usuario"] = data.usuario;
+                    localStorage["idUsuario"] = data.idUser;
 
 
                     window.location.href = 'home.html';
@@ -22,8 +21,7 @@ $('#login').submit(function () {
 
                     alert("Validacion incorrecta, verifique los datos");
                 }
-            })
-    return false;
+        });
 });
 
 function cerrarSesion() {
@@ -32,23 +30,7 @@ function cerrarSesion() {
 }
 
 
-$('#evento').submit(function () 
-	{
-		var datosNombre = $('nombreEvento').val();
-		var datosTipo = $('tipoEvento').val();
-		var datosLugar = $('lugarEvento').val();
-		var datosFecha = $('fechaEvento').val();
-        alert("Prueba");
-
-        $.post(localStorage["host"] + "php/evento.php", {nombre: datosNombre, tipo: datosTipo}, 
-            function (data){
-                
-            }, "json")
-
-
-	});
-
-function feedload()
+function feedLoad()
 {
     $.getJSON(localStorage["host"] + "php/manage.php",{option: "feed"}, function (data)
     {
@@ -60,3 +42,28 @@ function feedload()
     });
 } 
 
+function notificationLoad()
+{
+    $.getJSON(localStorage["host"] + "php/manage.php",{option: "notification", idUser: 1}, function (data)
+    {
+        var html = '';
+        if(data.status == 'EMPTY' )
+        {
+            html = html + '<span>No hay notificaciones disponibles. </span>';
+        }
+        $("#notifications").append( html );
+    });
+}
+
+function profileLoad()
+{
+    $.getJSON(localStorage["host"] + "php/manage.php",{option: "profile", idUser: 1}, function (data)
+    {
+        var html = '';
+        if(data.status == 'OK' )
+        {
+            html = html + '<img src="'+data.image+'"><span>'+data.names+'</span><span>'+data.birthday+'</span><span>'+data.email+'</span><span>'+data.phone+'</span>';
+        }
+        $("#profile").append( html );
+    });
+}
