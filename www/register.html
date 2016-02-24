@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.0-rc.1.js"></script>
+</head>
+
+<body>
+    <div data-role="page" id="login" data-dialog="true">
+
+        <div data-role="header" data-theme="d">
+            <h1>Unete Gratis</h1>
+        </div>
+
+        <div data-role="content" class="ui-content">
+            <form id="formulario">
+
+                <label for="names">Nombres:</label>
+                <input type="text" name="names" id="names" placeholder="Nombres" data-theme="a">
+                <label for="lastnames">Apellidos:</label>
+                <input type="text" name="lastnames" id="lastnames" placeholder="Apellidos" data-theme="a">
+                <label for="birth">Fecha de nacimiento:</label>
+                <input type="date" name="birth" id="birth" placeholder="Fecha de nacimiento" data-theme="a">
+                <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Unirme</button>
+
+            </form>
+        </div>
+
+    </div>
+
+
+    <script>
+        $('#formulario').submit(function() {
+
+
+            // recolecta los valores que inserto el usuario
+            var datosUsuario = $("#nombredeusuario").val()
+            var datosPassword = $("#clave").val()
+
+            url = "http://127.0.0.1/app-jquery/php/login.php?jsoncallback=?"
+            $.getJSON(url, {
+                    usuario: datosUsuario,
+                    password: datosPassword
+                })
+                .done(function(respuestaServer) {
+
+                    alert(respuestaServer.mensaje + "\nGenerado en: " + respuestaServer.hora + "\n" + respuestaServer.generador)
+
+                    if (respuestaServer.validacion == "ok") {
+
+                        /// si la validacion es correcta, muestra la pantalla "home"
+                        $.mobile.changePage("#home")
+
+                    } else {
+
+                        /// ejecutar una conducta cuando la validacion falla
+                    }
+
+                })
+            return false;
+        })
+    </script>
+</body>
+
+</html>
