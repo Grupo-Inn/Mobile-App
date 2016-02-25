@@ -36,7 +36,7 @@ function feedLoad()
     {
         var html = '';
         for (var i = data.length - 1; i >= 0; i--) {
-            html = html +'<li class="ui-li-has-count ui-li-has-thumb ui-last-child"><a href="details.html?'+data[i].id+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><img src=""><h2>'+data[i].name+'</h2><p>'+data[i].description+'</p><span class="ui-li-count ui-body-inherit">12</span></a></li>';
+            html = html +'<li class="ui-li-has-count ui-li-has-thumb ui-last-child"><a data-ajax="false" href="detail.html?'+data[i].id+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><img src=""><h2>'+data[i].name+'</h2><p>'+data[i].description+'</p><span class="ui-li-count ui-body-inherit">12</span></a></li>';
         };
         $( "#feed" ).append( html );
     });
@@ -62,8 +62,9 @@ function profileLoad()
         var html = '';
         if(data.status == 'OK' )
         {
-            html = html + '<img src="'+data.image+'"><span>'+data.names+'</span><span>'+data.birthday+'</span><span>'+data.email+'</span><span>'+data.phone+'</span>';
+            html = html + '<img class="circle" src="'+data.image+'"><h2>'+data.names+'</h2>';
         }
+        html = html + '<div><button class="ui-btn ui-btn-inline">Extrovertido</button><button class="ui-btn ui-btn-inline"><i class="fa fa-plus fa-lg"></i>Agregar Gustos</button></div>';
         $("#profile").append( html );
     });
 }

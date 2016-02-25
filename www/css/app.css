@@ -8,3 +8,48 @@ div.center{
 	text-align: center;
 }
 
+#profile img {
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+}
+
+#profile h2{
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+#profile .circle{
+	border-radius: 50px ;
+	height: 100px ;
+	width: 100px ;
+	border: 3px solid white;
+	box-shadow: 2px 3px 2px #BDBDBD;
+}
+
+#detail-content .band, .info, .participants{
+	display: block;
+	width: 100%;
+}
+
+#detail-content .band{
+	height: 200px;
+	margin: 0;
+	padding: 0;
+}
+
+#detail-content .info h2{
+	display: inline-block;
+}
+#detail-content .info label{
+	display: inline-block;
+}
+
+label.culture{
+	background-color: #00E676;
+	border: 3px solid white;
+	border-radius: 5px;
+	color: white;
+	font-size: 15px;
+}
