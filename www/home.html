@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div data-role="page" id="home">
+    <div data-role="page" id="feed">
 
         <div data-role="header" data-theme="d" style="overflow:hidden;">
             <h1>Grupo inn</h1>
@@ -37,9 +37,9 @@
             <!-- /navbar -->
        
         </div>
-        <div data-role="content" class="ui-content">
+        <div id="feed-content" data-role="content" class="ui-content">
 
-             <ul id="feed" data-role="listview" data-filter="true" data-filter-placeholder="Buscar eventos..." data-inset="true">
+             <ul id="feed-list" data-role="listview" data-filter="true" data-filter-placeholder="Buscar eventos..." data-inset="true">
                 <!--<li>
                     <a href="#">
                         <img src="http://placehold.it/500x500">
@@ -47,7 +47,9 @@
                         <p>Happy hour - 2x1 en todo el menú hasta las 7:00PM</p>
                         <span class="ui-li-count">12</span>
                     </a>
-                </li>-->
+                </li>
+                ...
+                -->
             </ul>
         </div>
         

@@ -35,10 +35,16 @@ function feedLoad()
     $.getJSON(localStorage["host"] + "php/manage.php",{option: "feed"}, function (data)
     {
         var html = '';
-        for (var i = data.length - 1; i >= 0; i--) {
+        if(true){
+            for (var i = data.length - 1; i >= 0; i--) {
             html = html +'<li class="ui-li-has-count ui-li-has-thumb ui-last-child"><a data-ajax="false" href="detail.html?'+data[i].id+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><img src=""><h2>'+data[i].name+'</h2><p>'+data[i].description+'</p><span class="ui-li-count ui-body-inherit">12</span></a></li>';
-        };
-        $( "#feed" ).append( html );
+            };
+            $( "#feed-list" ).append( html );    
+        }else{
+            html = '<span>No hay actividades disponibles. </span>';
+            $( "#feed-content" ).empty();
+            $( "#feed-content" ).append( html );
+        }
     });
 } 
 
