@@ -10,11 +10,12 @@
     <script src="js/jquery.mobile-1.4.0-rc.1.js"></script>
 </head>
 
-<body>
-    <div data-role="page" id="login" data-dialog="true">
+<body id="grupoinn">
+    <div data-role="page" id="login" >
 
-        <div data-role="header" data-theme="d">
+        <div class="toolbar" data-role="header">
             <h1>Identificate</h1>
+            <a href="index.html" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-back ui-btn-icon-left ui-corner-all ui-btn-icon-notext" onClick="cerrarSesion()"></a>
         </div>
 
         <div data-role="content" class="ui-content">

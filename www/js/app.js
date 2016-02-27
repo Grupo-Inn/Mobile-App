@@ -11,7 +11,6 @@ $('#login').submit(function () {
             if (data.status == "OK") {
 
                     /// si la validacion es correcta, muestra la pantalla "home"
-                    //localStorage["usuario"] = data.usuario;
                     localStorage["idUsuario"] = data.idUser;
 
 
@@ -37,7 +36,7 @@ function feedLoad()
         var html = '';
         if(true){
             for (var i = data.length - 1; i >= 0; i--) {
-            html = html +'<li class="ui-li-has-count ui-li-has-thumb ui-last-child"><a data-ajax="false" href="detail.html?'+data[i].id+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><img src=""><h2>'+data[i].name+'</h2><p>'+data[i].description+'</p><span class="ui-li-count ui-body-inherit">12</span></a></li>';
+            html = html +'<li class="ui-li-has-count ui-li-has-thumb ui-last-child"><a data-ajax="false" href="detail.html?idEvent='+data[i].id+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r"><img src=""><h2>'+data[i].name+'</h2><p>'+data[i].description+'</p><span class="ui-li-count ui-body-inherit">12</span></a></li>';
             };
             $( "#feed-list" ).append( html );    
         }else{

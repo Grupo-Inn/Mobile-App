@@ -3,9 +3,57 @@
 	margin: 0;
 }
 
-div.center{
-	margin: 0 auto;
+
+#grupoinn .ui-btn-a{
+	background-color: #FFAF00;
+}
+#grupoinn .ui-btn-a:hover{
+	background-color: #FFA000;
+}
+
+#grupoinn .ui-btn-b{
+	background-color: #00B1D3;
+}
+#grupoinn .ui-btn-b:hover{
+	background-color: #0091EA;
+}
+
+#grupoinn .ui-btn-d{
+	background-color: #007078;
+}
+#grupoinn .ui-btn-d:hover{
+	background-color: #0091EA;
+}
+
+#grupoinn{
+	background: #EEEEEE;
+}
+
+#grupoinn .toolbar{
+	background: #00B1D3;
+	border-color: #00B1D3;
+}
+
+#grupoinn .toolbar ul > li a{
+	background:#00B1D3;
+	border-color: #80DEEA;
+}
+#grupoinn .toolbar ul > li a.ui-btn-active{
+	background: #00B0FF;
+	border-color: #0095AA;
+}
+
+
+#grupoinn .logo{
+	width: 100%;
+	margin: auto;
+	padding-top: 15%;
 	text-align: center;
+}
+
+#grupoinn .logo img{
+	width: 100%;
+	height: 100%;
 }
 
 #profile img {
