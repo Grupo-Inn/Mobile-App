@@ -15,7 +15,7 @@ if($option == 'login'){
 	}else{
 		$user = $userModel->get_user($username, $password)[0];
 		$results['status'] = 'OK';
-		$results['idUser'] = $user['idUsuario'];
+		$results['idUser'] = $user['id'];
 	}
 	$resultsJSON = json_encode($results);
 
@@ -29,10 +29,11 @@ if($option == 'feed'){
 	$results = array();
 
 	foreach ($events as $row) {
-		$result['id'] = $row['idEvento'];
-		$result['name'] = $row['nombre'];
-		$result['description'] = $row['descripcion'];
-		$result['image'] = $row['url_imagen'];
+		$result['id'] = $row['id'];
+		$result['name'] = $row['name'];
+		$result['description'] = $row['description'];
+		$result['image'] = $row['image'];
+		$result['num_p'] = $eventModel->get_num_profiles($row['id'])[0]['COUNT(*)'];
 		array_push($results, $result);
 	}
 
@@ -49,11 +50,13 @@ if($option == 'detail'){
 	}else{
 		$event = $eventModel->get_event($idEvent)[0];
 		$result['status'] = "OK";
-		$result['name'] = $event['nombre'];
-		$result['description'] = $event['descripcion'];
-		$result['image'] = $event['url_imagen'];
-		$result['type'] = $event['tipo'];
-		$result['place'] = $event['lugar'];	
+		$result['name'] = $event['name'];
+		$result['description'] = $event['description'];
+		$result['image'] = $event['image'];
+		$result['type'] = $event['type'];
+		$result['place'] = $event['place'];
+		$result['quota'] = $event['quota'];
+		$result['participants'] = $eventModel->get_profiles($idEvent);
 	}
 
 	$resultsJSON = json_encode($result);
@@ -63,17 +66,28 @@ if($option == 'detail'){
 
 if($option == 'profile'){
 	$idUser = $_GET['idUser'];
-	$perfilModel = new Profile();
-	if(!($perfilModel->get_profile($idUser))){
+	$profileModel = new Profile();
+	if(!($profileModel->get_profile($idUser))){
 		$result['status'] = "EMPTY";
 	}else{
-		$results = $perfilModel->get_profile($idUser)[0];
+		$results = $profileModel->get_profile($idUser)[0];
 		$result['status'] = "OK";
-		$result['names'] = $results['nombres'];
-		$result['birthday'] = $results['f_nacimiento'];
-		$result['email'] = $results['correo'];
-		$result['phone'] = $results['telefono'];
-		$result['image'] = $results['url_imagen'];	
+		$result['names'] = $results['names'];
+		$result['birthday'] = $results['birthday'];
+		$result['email'] = $results['email'];
+		$result['phone'] = $results['phone'];
+		$result['image'] = $results['image'];
+		//
+		//$likeModel = new Like();
+		//print_r($likeModel->get_likes());
+		//$likes = $likeModel->get_likes();
+		$likes = $profileModel->get_profile_likes($idUser);
+		$var = array();
+		foreach ($likes as $row) {
+			array_push($var, $row['name']);
+		}
+		$result['likes'] = $var;
+
 	}
 
 	$resultsJSON = json_encode($result);
@@ -89,6 +103,33 @@ if($option == 'notification'){
 		$result['status'] = "OK";
 	}
 
+	$resultsJSON = json_encode($result);
+	echo ''.$resultsJSON.'';
+}
+
+if($option == 'register'){
+	$username = $_GET['username'];
+	$password = $_GET['password'];
+ 	$userModel = new User();
+ 	if(!($userModel->new_user($username, $password))){
+ 		$result['status'] = 'ERROR';
+ 	}else{
+ 		$result['status'] = 'OK';
+ 	}
+
+ 	$resultsJSON = json_encode($result);
+	echo ''.$resultsJSON.'';
+}
+
+if($option == 'join'){
+	$idEvent = $_GET['idEvent'];
+	$idUser = $_GET['idUser'];
+	$eventModel = new Event();
+	if(!($eventModel->join($idEvent, $idUser))){
+		$result['status'] = 'ERROR';
+	}else{
+		$result['result'] = 'OK';
+	}
 	$resultsJSON = json_encode($result);
 	echo ''.$resultsJSON.'';
 }
