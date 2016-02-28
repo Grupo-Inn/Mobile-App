@@ -23,11 +23,10 @@ if($option == 'login'){
 }
 
 
-if($option == 'feed'){
+if($option == 'feed'){ //Modificar la captura o no de resultados y revisar formato UTF-8
 	$eventModel = new Event();
 	$events = $eventModel->get_events();	
 	$results = array();
-
 	foreach ($events as $row) {
 		$result['id'] = $row['id'];
 		$result['name'] = $row['name'];

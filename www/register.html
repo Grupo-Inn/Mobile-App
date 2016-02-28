@@ -11,60 +11,33 @@
 </head>
 
 <body id="grupoinn">
-    <div data-role="page" id="login" data-dialog="true">
+    <div data-role="page" id="login">
 
-        <div class="toolbar" data-role="header" data-theme="d">
+        <div class="toolbar" data-role="header">
             <h1>Unete Gratis</h1>
+            <a href="index.html" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-b ui-icon-back ui-btn-icon-left ui-corner-all ui-btn-icon-notext"></a>
         </div>
 
         <div data-role="content" class="ui-content">
-            <form id="formulario">
+            <form id="register">
 
                 <label for="names">Nombres:</label>
                 <input type="text" name="names" id="names" placeholder="Nombres" data-theme="a">
                 <label for="lastnames">Apellidos:</label>
                 <input type="text" name="lastnames" id="lastnames" placeholder="Apellidos" data-theme="a">
+                <label for="email">E-mail:</label>
+                <input type="email" name="email" id="email" placeholder="E-mail" data-theme="a">
+                <label for="phone">Telefono:</label>
+                <input type="tel" name="phone" id="phone" placeholder="Telefono" data-theme="a">
                 <label for="birth">Fecha de nacimiento:</label>
                 <input type="date" name="birth" id="birth" placeholder="Fecha de nacimiento" data-theme="a">
-                <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Unirme</button>
+                <input type="submit" value="Unirte" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">
 
             </form>
         </div>
 
     </div>
-
-
-    <script>
-        $('#formulario').submit(function() {
-
-
-            // recolecta los valores que inserto el usuario
-            var datosUsuario = $("#nombredeusuario").val()
-            var datosPassword = $("#clave").val()
-
-            url = "http://127.0.0.1/app-jquery/php/login.php?jsoncallback=?"
-            $.getJSON(url, {
-                    usuario: datosUsuario,
-                    password: datosPassword
-                })
-                .done(function(respuestaServer) {
-
-                    alert(respuestaServer.mensaje + "\nGenerado en: " + respuestaServer.hora + "\n" + respuestaServer.generador)
-
-                    if (respuestaServer.validacion == "ok") {
-
-                        /// si la validacion es correcta, muestra la pantalla "home"
-                        $.mobile.changePage("#home")
-
-                    } else {
-
-                        /// ejecutar una conducta cuando la validacion falla
-                    }
-
-                })
-            return false;
-        })
-    </script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>

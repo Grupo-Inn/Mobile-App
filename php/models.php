@@ -33,7 +33,7 @@ class User extends Modelo
 
     public function new_user($a_username, $a_password)
     {
-        $user = $this->_db->query('INSERT INTO grupo_inn_db.user VALUES ("'.$a_username.'", "'.$a_password.'") ');
+        $user = $this->_db->query('INSERT INTO grupo_inn_db.user (username, password) VALUES ("'.$a_username.'", "'.$a_password.'") ');
         
         return $user;
         
@@ -127,6 +127,7 @@ class Profile extends modelo
 
         return $likes;
     }
+
 }
 
 class Like extends modelo
